@@ -1,4 +1,4 @@
-![RTT Logo](http://www.rtt.ag/static/system/modules/com.realtimetechnology.corporatewebsite/1.5.7/resources/img/logo_rtt.png) **CHALLENGING REALITY. Every day**
+[![RTT Logo](http://www.rtt.ag/static/system/modules/com.realtimetechnology.corporatewebsite/1.5.7/resources/img/logo_rtt.png) **CHALLENGING REALITY. Every day**](http://rtt.ag/)
 
 RTT-JiraWebhook
 ===============
