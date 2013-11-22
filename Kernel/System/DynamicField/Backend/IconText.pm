@@ -1,11 +1,19 @@
-# --
-# Kernel/System/DynamicField/Backend/Text.pm - Delegate for DynamicField Text backend
+#
+# RTT-JiraWebhook
+#
+# Copyright (C) 2013 Realtime Technology AG, http://rtt.ag/
+#
+# Based on Kernel/System/DynamicField/Backend/Text.pm - Delegate for DynamicField Text backend
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
-# --
-# This software comes with ABSOLUTELY NO WARRANTY. For details, see
-# the enclosed file COPYING for license information (AGPL). If you
-# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
-# --
+#
+# Author: Martin Gross <martin.gross@rtt.ag>
+# License: GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007
+#
+# THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+# KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+# PARTICULAR PURPOSE.
+#
 
 package Kernel::System::DynamicField::Backend::IconText;
 
@@ -605,14 +613,3 @@ sub ValueLookup {
 
 1;
 
-=back
-
-=head1 TERMS AND CONDITIONS
-
-This software is part of the OTRS project (L<http://otrs.org/>).
-
-This software comes with ABSOLUTELY NO WARRANTY. For details, see
-the enclosed file COPYING for license information (AGPL). If you
-did not receive this file, see L<http://www.gnu.org/licenses/agpl.txt>.
-
-=cut

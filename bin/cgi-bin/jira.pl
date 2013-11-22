@@ -1,4 +1,20 @@
 #!/usr/bin/perl
+#
+# RTT-JiraWebhook
+#
+# Copyright (C) 2013 Realtime Technology AG, http://rtt.ag/
+#
+# Based on Znuny4OTRS-QuickClose
+# Copyright (C) 2013 Znuny GmbH, http://znuny.com/
+#
+# Author: Martin Gross <martin.gross@rtt.ag>
+# License: GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007
+#
+# THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+# KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+# PARTICULAR PURPOSE.
+#
 
 use strict;
 use warnings;
