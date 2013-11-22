@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<otrs_package version="1.0">
+    <Name>RTT-JiraWebhook</Name>
+    <Version>1.0.0</Version>
+    <Framework>3.2.x</Framework>
+    <Vendor>Realtime Technology AG</Vendor>
+    <URL>http://rtt.ag/</URL>
+    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <Description Lang="en">Integrates Jira-Webhooks into OTRS</Description>
+    <Description Lang="de">Integriert Jira-Webhooks in OTRS</Description>
+    <Filelist>
+        <File Permission="644" Location="Kernel/Config/Files/RTT-JiraWebhook.xml"/>
+        <File Permission="644" Location="Kernel/Modules/AgentTicketRTTwaitJira.pm"/>
+        <File Permission="644" Location="Kernel/System/DynamicField/Backend/IconText.pm"/>
+        <File Permission="755" Location="bin/cgi-bin/jira.pl"/>
+    </Filelist>
+    <CodeInstall Type="post">
+
+        # Add new State "wait JIRA"
+        use Kernel::System::State;
+        use Kernel::System::DynamicField;
+        use Data::Dumper;
+
+        $Self->{StateObject} = Kernel::System::State->new(
+            ConfigObject => $Self->{ConfigObject},
+            LogObject    => $Self->{LogObject},
+            DBObject     => $Self->{DBObject},
+            MainObject   => $Self->{MainObject},
+            EncodeObject => $Self->{EncodeObject},
+        );
+
+        $Self->{StateObject}->StateAdd(
+            Name    => 'wait JIRA',
+            Comment => 'Tickets that wait for a JIRA-Update to occur',
+            ValidID => 1,
+            TypeID  => 3,
+            UserID  => 1,
+        );
+
+        # Add Dynamic Fields
+        $Self->{DynamicFieldObject} = Kernel::System::DynamicField->new( %{$Self} );
+        my @dynamicfields = (
+            {
+                'Name' => 'JiraKey',
+                'Label' => 'Jira-ID',
+                'Type' => 'Text',
+            },
+            {
+                'Name' => 'JiraSummary',
+                'Label' => 'summary',
+                'Type'  => 'Text',
+            },
+            {
+                'Name' => 'JiraStatus',
+                'Label' => 'Jira Status',
+                'Type'  => 'IconText',
+            },
+            {
+                'Name' => 'JiraIssueType',
+                'Label' => 'Issue Type',
+                'Type' => 'IconText',
+            },
+            {
+                'Name'  => 'JiraPriority',
+                'Label' => 'Priority',
+                'Type' => 'IconText',
+            },
+            {
+                'Name' => 'JiraAssignee',
+                'Label' => 'Assignee',
+                'Type' => 'IconText',
+            },
+            {
+                'Name' => 'JiraLastChanged',
+                'Label' => 'Last Changed',
+                'Type' => 'DateTime',
+            },
+        );
+
+        my $presentfields = scalar @{$Self->{DynamicFieldObject}->DynamicFieldList()};
+
+        my $i = 1;
+        for my $field (@dynamicfields) {
+            my $FieldID = $Self->{DynamicFieldObject}->DynamicFieldAdd(
+                Name       => $field->{'Name'},
+                Label      => $field->{'Label'},
+                FieldOrder => $presentfields + $i,
+                FieldType  => $field->{'Type'},
+                ObjectType => 'Ticket',
+                Config     => { DefaultValue => '' },
+                ValidID    => 1,
+                UserID     => 1,
+                );
+                $i++;
+        }
+    </CodeInstall>
+</otrs_package>

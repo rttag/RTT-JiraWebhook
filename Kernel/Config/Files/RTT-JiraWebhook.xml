@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<otrs_config version="1.0" init="Application">
+<!-- wait Jira-Button -->
+    <ConfigItem Name="Ticket::Frontend::MenuModule###951-waitJira" Required="0" Valid="1">
+        <Description Translatable="1">Shows a link in the zoom view of the agent interface to put a ticket back to sleep.</Description>
+        <Group>RTT-JiraWebhook</Group>
+        <SubGroup>Frontend::Agent::Ticket::MenuModule</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::Output::HTML::TicketMenuGeneric</Item>
+                <Item Key="Name">wait Jira</Item>
+                <Item Key="Description" Translatable="1">Wait for next Jira-Update</Item>
+                <Item Key="Action">AgentTicketRTTwaitJira</Item>
+                <Item Key="Link">Action=AgentTicketRTTwaitJira;TicketID=$QData{"TicketID"}</Item>
+                <Item Key="Target"></Item>
+                <Item Key="PopupType"></Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="Ticket::Frontend::PreMenuModule###951-waitJira" Required="0" Valid="1">
+        <Description Translatable="1">Shows a link in every ticket-view of the agent interface to put a ticket back to sleep.</Description>
+        <Group>RTT-JiraWebhook</Group>
+        <SubGroup>Frontend::Agent::Ticket::MenuModulePre</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::Output::HTML::TicketMenuGeneric</Item>
+                <Item Key="Name">wait Jira</Item>
+                <Item Key="Action">AgentTicketRTTwaitJira</Item>
+                <Item Key="Description" Translatable="1">Wait for next Jira-Update</Item>
+                <Item Key="Link">Action=AgentTicketRTTwaitJira;TicketID=$QData{"TicketID"}</Item>
+                <Item Key="Target"></Item>
+                <Item Key="PopupType"></Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="RTT::JiraWebhook::waitState" Required="1" Valid="1">
+        <Description Translatable="1">Defines the waiting-state to set.</Description>
+        <Group>RTT-JiraWebhook</Group>
+        <SubGroup>Core</SubGroup>
+        <Setting>
+            <String Regex="">wait JIRA</String>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="Frontend::Module###AgentTicketRTTwaitJira" Required="1" Valid="1">
+        <Description Translatable="1">Frontend module registration for the agent interface.</Description>
+        <Group>RTT-JiraWebhook</Group>
+        <SubGroup>Frontend::Agent::ModuleRegistration</SubGroup>
+        <Setting>
+            <FrontendModuleReg>
+                <Description>wait Jira</Description>
+                <Title>wait Close</Title>
+                <NavBarName>Ticket</NavBarName>
+            </FrontendModuleReg>
+        </Setting>
+    </ConfigItem>
+	
+<!-- Icon+Text DynamicField Backend -->
+    <ConfigItem Name="DynamicFields::Backend###IconText" Required="1" Valid="1">
+        <Description Translatable="1">Registration of the IconText-DynamicField-type.</Description>
+        <Group>RTT-JiraWebhook</Group>
+        <SubGroup>DynamicFields::Backend::Registration</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="ConfigDialog">AdminDynamicFieldText</Item>
+				<Item Key="DisplayName">Icon+Text</Item>
+				<Item Key="Module">Kernel::System::DynamicField::Backend::IconText</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+
+<!-- DynamicField Displays -->
+    <ConfigItem Name="Ticket::Frontend::AgentTicketFreeText###DynamicField" Required="0" Valid="1">
+        <Description Translatable="1">Showing the Jira-DynamicFields in the free text screen.</Description>
+        <Group>RTT-JiraWebhook</Group>
+        <SubGroup>Frontend::Agent::Ticket::ViewFreeText</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="JiraKey">1</Item>
+				<Item Key="JiraSummary">1</Item>
+				<Item Key="JiraStatus">1</Item>
+				<Item Key="JiraIssueType">1</Item>
+				<Item Key="JiraPriority">1</Item>
+				<Item Key="JiraAssignee">1</Item>
+				<Item Key="JiraLastChanged">1</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="Ticket::Frontend::AgentTicketZoom###DynamicField" Required="0" Valid="1">
+        <Description Translatable="1">Showing the Jira-DynamicFields in the sidebar of the ticket zoom screen.</Description>
+        <Group>RTT-JiraWebhook</Group>
+        <SubGroup>Frontend::Agent::Ticket::ViewZoom</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="JiraKey">1</Item>
+				<Item Key="JiraSummary">1</Item>
+				<Item Key="JiraStatus">1</Item>
+				<Item Key="JiraIssueType">1</Item>
+				<Item Key="JiraPriority">1</Item>
+				<Item Key="JiraAssignee">1</Item>
+				<Item Key="JiraLastChanged">1</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+
+<!-- Webhook-Config -->
+    <ConfigItem Name="RTT::JiraWebhook::JiraUrl" Required="1" Valid="1">
+        <Description Translatable="1">URL of JIRA (including trailing slash).</Description>
+        <Group>RTT-JiraWebhook</Group>
+        <SubGroup>Core</SubGroup>
+        <Setting>
+            <String Regex="">http://ji01.rtt.local:8080/</String>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="RTT::JiraWebhook::JiraUpdatedState" Required="1" Valid="1">
+        <Description Translatable="1">Set Ticket to this state if there was a Jira-Update.</Description>
+        <Group>RTT-JiraWebhook</Group>
+        <SubGroup>Core</SubGroup>
+        <Setting>
+            <String Regex="">open</String>
+        </Setting>
+    </ConfigItem>
+</otrs_config>
