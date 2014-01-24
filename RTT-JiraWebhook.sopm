@@ -3,7 +3,7 @@
 
 RTT-JiraWebhook
 
-Copyright (C) 2013 Realtime Technology AG, http://rtt.ag/
+Copyright (C) 2013-2014 Realtime Technology AG, http://rtt.ag/
 
 Author: Martin Gross <martin.gross@rtt.ag>
 License: GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007
@@ -23,6 +23,8 @@ PARTICULAR PURPOSE.
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">Integrates Jira-Webhooks into OTRS</Description>
     <Description Lang="de">Integriert Jira-Webhooks in OTRS</Description>
+    <ChangeLog Version="1.0.0" Date="2013-12-22 10:39:55 +0100">Initial release for OTRS 3.2.x</ChangeLog>
+    <ChangeLog Version="1.0.1" Date="2014-01-23 19:05:00 +0100">Update to support OTRS 3.3.x while dropping support for OTRS 3.2.x</ChangeLog>
     <Filelist>
         <File Permission="644" Location="Kernel/Config/Files/RTT-JiraWebhook.xml"/>
         <File Permission="644" Location="Kernel/Modules/AgentTicketRTTwaitJira.pm"/>

@@ -1,4 +1,21 @@
- --
+#
+# RTT-JiraWebhook
+#
+# Copyright (C) 2013-2014 Realtime Technology AG, http://rtt.ag/
+#
+# Kernel/System/DynamicField/Driver/Text.pm - Delegate for DynamicField Text Driver
+# Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
+#
+# Author: Martin Gross <martin.gross@rtt.ag>
+# License: GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007
+#
+# THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+# KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+# PARTICULAR PURPOSE.
+#
+
+# --
 # Kernel/System/DynamicField/Driver/Text.pm - Delegate for DynamicField Text Driver
 # Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
 # --

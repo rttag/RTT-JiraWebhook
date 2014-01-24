@@ -11,7 +11,8 @@ Download the opm-Package and install it via the admin-interface using the packag
 
 **Prerequisites**
 
-- OTRS 3.2
+- OTRS 3.3.x
+- An unmaintained version for OTRS 3.2.x can be found at https://github.com/rttag/RTT-JiraWebhook/tree/v1.0.0
 
 **Configuration OTRS**
 
@@ -50,4 +51,4 @@ This module is licensed according to the terms of the GNU AFFERO GENERAL PUBLIC 
 THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
 
 
-(c) 2013 Realtime Technology AG - http://rtt.ag/
+(c) 2013-2014 Realtime Technology AG - http://rtt.ag/
