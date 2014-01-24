@@ -2,10 +2,7 @@
 #
 # RTT-JiraWebhook
 #
-# Copyright (C) 2013 Realtime Technology AG, http://rtt.ag/
-#
-# Based on Znuny4OTRS-QuickClose
-# Copyright (C) 2013 Znuny GmbH, http://znuny.com/
+# Copyright (C) 2013-2014 Realtime Technology AG, http://rtt.ag/
 #
 # Author: Martin Gross <martin.gross@rtt.ag>
 # License: GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007
