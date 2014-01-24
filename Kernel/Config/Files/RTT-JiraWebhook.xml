@@ -69,8 +69,8 @@ PARTICULAR PURPOSE.
         </Setting>
     </ConfigItem>
 	
-<!-- Icon+Text DynamicField Backend -->
-    <ConfigItem Name="DynamicFields::Backend###IconText" Required="1" Valid="1">
+<!-- Icon+Text DynamicField Driver (formerly: Backend) -->
+    <ConfigItem Name="DynamicFields::Driver###IconText" Required="1" Valid="1">
         <Description Translatable="1">Registration of the IconText-DynamicField-type.</Description>
         <Group>RTT-JiraWebhook</Group>
         <SubGroup>DynamicFields::Backend::Registration</SubGroup>
@@ -78,7 +78,7 @@ PARTICULAR PURPOSE.
             <Hash>
                 <Item Key="ConfigDialog">AdminDynamicFieldText</Item>
 				<Item Key="DisplayName">Icon+Text</Item>
-				<Item Key="Module">Kernel::System::DynamicField::Backend::IconText</Item>
+				<Item Key="Module">Kernel::System::DynamicField::Driver::IconText</Item>
             </Hash>
         </Setting>
     </ConfigItem>

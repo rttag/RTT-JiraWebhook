@@ -16,8 +16,8 @@ PARTICULAR PURPOSE.
 -->
 <otrs_package version="1.0">
     <Name>RTT-JiraWebhook</Name>
-    <Version>1.0.0</Version>
-    <Framework>3.2.x</Framework>
+    <Version>1.0.1</Version>
+    <Framework>3.3.x</Framework>
     <Vendor>Realtime Technology AG</Vendor>
     <URL>http://rtt.ag/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
@@ -26,7 +26,7 @@ PARTICULAR PURPOSE.
     <Filelist>
         <File Permission="644" Location="Kernel/Config/Files/RTT-JiraWebhook.xml"/>
         <File Permission="644" Location="Kernel/Modules/AgentTicketRTTwaitJira.pm"/>
-        <File Permission="644" Location="Kernel/System/DynamicField/Backend/IconText.pm"/>
+        <File Permission="644" Location="Kernel/System/DynamicField/Driver/IconText.pm"/>
         <File Permission="755" Location="bin/cgi-bin/jira.pl"/>
     </Filelist>
     <CodeInstall Type="post">

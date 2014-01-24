@@ -19,7 +19,7 @@ In the OTRS SysConfig you should at least update the RTT::JiraWebhook::JiraUrl-s
 
 **Configuration Jira**
 
-Setup a Webhook pointing to http://<your-otrs>/jira.pl
+Setup a Webhook pointing to http://your-otrs/jira.pl
 
 **Functionality**
 
