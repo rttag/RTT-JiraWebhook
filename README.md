@@ -11,8 +11,9 @@ Download the opm-Package and install it via the admin-interface using the packag
 
 **Prerequisites**
 
-- OTRS 3.3.x
+- OTRS 5.0.x
 - An unmaintained version for OTRS 3.2.x can be found at https://github.com/rttag/RTT-JiraWebhook/tree/v1.0.0
+- An unmaintained version for OTRS 3.3.x can be found at https://github.com/rttag/RTT-JiraWebhook/tree/v1.0.1
 
 **Configuration OTRS**
 
