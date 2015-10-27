@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#/usr/bin/perl
 #
 # RTT-JiraWebhook
 #
@@ -23,13 +23,6 @@ use lib "$Bin/../../Kernel/cpan-lib";
 use lib "$Bin/../../Custom";
 
 use Getopt::Long;
-use Kernel::Config;
-use Kernel::System::Encode;
-use Kernel::System::Log;
-use Kernel::System::Time;
-use Kernel::System::DB;
-use Kernel::System::Main;
-use Kernel::System::Ticket;
 
 use Data::Dumper;
 use CGI;
@@ -37,17 +30,23 @@ use JSON::XS;
 use POSIX;
 
 # create common objects
+use Kernel::System::ObjectManager;
+local $Kernel::OM = Kernel::System::ObjectManager->new();
+
 my %CommonObject = ();
-$CommonObject{ConfigObject} = Kernel::Config->new();
-$CommonObject{EncodeObject} = Kernel::System::Encode->new(%CommonObject);
-$CommonObject{LogObject}    = Kernel::System::Log->new(
-    LogPrefix => 'JIRA Webhook',
-    %CommonObject,
-);
-$CommonObject{MainObject}   = Kernel::System::Main->new(%CommonObject);
-$CommonObject{TimeObject}   = Kernel::System::Time->new(%CommonObject);
-$CommonObject{DBObject}     = Kernel::System::DB->new(%CommonObject);
-$CommonObject{TicketObject} = Kernel::System::Ticket->new(%CommonObject);
+$CommonObject{ConfigObject} = $Kernel::OM->Get('Kernel::Config');
+$CommonObject{EncodeObject} = $Kernel::OM->Get('Kernel::System::Encode');
+$CommonObject{LogObject}    = $Kernel::OM->Get('Kernel::System::Log');
+#$CommonObject{LogObject}    = $Kernel::OM->Get('Kernel::System::Log')->new(
+#    LogPrefix => 'JIRA Webhook',
+#    %CommonObject,
+#);
+$CommonObject{MainObject}   = $Kernel::OM->Get('Kernel::System::Main');
+$CommonObject{TimeObject}   = $Kernel::OM->Get('Kernel::System::Time');
+$CommonObject{DBObject}     = $Kernel::OM->Get('Kernel::System::DB');
+$CommonObject{TicketObject} = $Kernel::OM->Get('Kernel::System::Ticket');
+$CommonObject{DynamicFieldObject} = $Kernel::OM->Get('Kernel::System::DynamicField');
+$CommonObject{DynamicFieldBackendObject} = $Kernel::OM->Get('Kernel::System::DynamicField::Backend');
 
 my $q = new CGI;
 my @fields = $q->param();
@@ -57,7 +56,8 @@ print $q->header();
 my $jsondata;
 
 if (!defined($q->param('POSTDATA'))) {
-    exit('No Postdata!');
+    print('No Postdata!');
+    exit();
 }
 $jsondata = decode_json($q->param('POSTDATA'));
 
@@ -96,8 +96,8 @@ foreach my $TicketID(@TicketIDs) {
 		foreach my $JiraField(@JiraFields) {
 			my @JiraField = $JiraField;
 
-			$CommonObject{TicketObject}->{DynamicFieldBackendObject}->ValueSet(
-				DynamicFieldConfig => $CommonObject{TicketObject}->{DynamicFieldObject}->DynamicFieldGet(Name => $JiraField[0][0]),
+			$CommonObject{DynamicFieldBackendObject}->ValueSet(
+				DynamicFieldConfig => $CommonObject{DynamicFieldObject}->DynamicFieldGet(Name => $JiraField[0][0]),
 				ObjectID           => $TicketID,
 				Value              => $JiraField[0][1],
 				UserID             => 1,

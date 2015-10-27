@@ -18,6 +18,9 @@ package Kernel::Modules::AgentTicketRTTwaitJira;
 
 use strict;
 use warnings;
+no warnings 'redefine';
+
+use base qw(Kernel::Modules::AgentTicketActionCommon);
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -26,12 +29,9 @@ sub new {
     my $Self = {%Param};
     bless( $Self, $Type );
 
-    # check needed objects
-    for (qw(ParamObject DBObject LayoutObject LogObject ConfigObject QueueObject TimeObject TicketObject)) {
-        if ( !$Self->{$_} ) {
-            $Self->{LayoutObject}->FatalError( Message => "Got no $_!" );
-        }
-    }
+    $Self->{LayoutObject} = $Kernel::OM->Get('Kernel::Output::HTML::Layout');
+    $Self->{TicketObject} = $Kernel::OM->Get('Kernel::System::Ticket');
+    $Self->{ConfigObject} = $Kernel::OM->Get('Kernel::Config');
 
     return $Self;
 }
