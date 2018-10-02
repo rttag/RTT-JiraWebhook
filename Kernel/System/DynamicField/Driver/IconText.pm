@@ -2,11 +2,12 @@
 # RTT-JiraWebhook
 #
 # Copyright (C) 2013-2014 Realtime Technology AG, http://rtt.ag/
+# Copyright (C) 2014-2018 Dassault Systemes 3DEXCITE GmbH, http://3dexcite.de/
 #
 # Kernel/System/DynamicField/Driver/Text.pm - Delegate for DynamicField Text Driver
 # Copyright (C) 2001-2014 OTRS AG, http://otrs.com/
 #
-# Author: Martin Gross <martin.gross@rtt.ag>
+# Author: Martin Gross <martin.gross@3ds.com>
 # License: GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007
 #
 # THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
@@ -16,12 +17,11 @@
 #
 
 # --
-# Kernel/System/DynamicField/Driver/Text.pm - Delegate for DynamicField Text Driver
-# Copyright (C) 2001-2013 OTRS AG, http://otrs.com/
+# Copyright (C) 2001-2018 OTRS AG, https://otrs.com/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
-# the enclosed file COPYING for license information (AGPL). If you
-# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# the enclosed file COPYING for license information (GPL). If you
+# did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
 # --
 
 package Kernel::System::DynamicField::Driver::IconText;
@@ -32,13 +32,33 @@ no warnings 'redefine';
 
 use Kernel::System::VariableCheck qw(:all);
 
-use base qw(Kernel::System::DynamicField::Driver::BaseText);
+use parent qw(Kernel::System::DynamicField::Driver::BaseText);
 
 our @ObjectDependencies = (
-  'Kernel::Config',
-  'Kernel::System::DynamicFieldValue',
-  'Kernel::System::Main'
+    'Kernel::Config',
+    'Kernel::System::DynamicFieldValue',
+    'Kernel::System::Main',
 );
+
+=head1 NAME
+
+Kernel::System::DynamicField::Driver::Text
+
+=head1 DESCRIPTION
+
+DynamicFields Text Driver delegate
+
+=head1 PUBLIC INTERFACE
+
+This module implements the public interface of L<Kernel::System::DynamicField::Backend>.
+Please look there for a detailed reference of the functions.
+
+=head2 new()
+
+usually, you want to create an instance of this
+by using Kernel::System::DynamicField::Backend->new();
+
+=cut
 
 sub new {
     my ( $Type, %Param ) = @_;
@@ -46,8 +66,6 @@ sub new {
     # allocate new hash for object
     my $Self = {};
     bless( $Self, $Type );
-
-#    $Self->{DynamicFieldValueObject} = Kernel::System::DynamicFieldValue->new( %{$Self} );
 
     # set field behaviors
     $Self->{Behaviors} = {
@@ -57,12 +75,12 @@ sub new {
         'IsFiltrable'                  => 0,
         'IsStatsCondition'             => 1,
         'IsCustomerInterfaceCapable'   => 1,
+        'IsLikeOperatorCapable'        => 1,
     };
 
-    # get the Dynamic Field Backend custmom extensions
+    # get the Dynamic Field Backend custom extensions
     my $DynamicFieldDriverExtensions
         = $Kernel::OM->Get('Kernel::Config')->Get('DynamicFields::Extension::Driver::IconText');
-
 
     EXTENSION:
     for my $ExtensionKey ( sort keys %{$DynamicFieldDriverExtensions} ) {
@@ -77,13 +95,16 @@ sub new {
         if ( $Extension->{Module} ) {
 
             # check if module can be loaded
-            if ( !$Kernel::OM->Get('Kernel::System::Main')->RequireBaseClass( $Extension->{Module} ) ) {
+            if (
+                !$Kernel::OM->Get('Kernel::System::Main')->RequireBaseClass( $Extension->{Module} )
+                )
+            {
                 die "Can't load dynamic fields backend module"
                     . " $Extension->{Module}! $@";
             }
         }
 
-        # check if extension contains more behabiors
+        # check if extension contains more behaviors
         if ( IsHashRefWithData( $Extension->{Behaviors} ) ) {
 
             %{ $Self->{Behaviors} } = (
@@ -99,7 +120,7 @@ sub new {
 sub DisplayValueRender {
     my ( $Self, %Param ) = @_;
 
-    # set HTMLOuput as default if not specified
+    # set HTMLOutput as default if not specified
     if ( !defined $Param{HTMLOutput} ) {
         $Param{HTMLOutput} = 1;
     }
@@ -107,7 +128,7 @@ sub DisplayValueRender {
     # get raw Title and Value strings from field value
     my $Value = defined $Param{Value} ? $Param{Value} : '';
     my @vals = split('\|', $Value);
-    my $Title = '';
+    my $Title = $Value;
 
     if (@vals) {
         $Value = '<img src="' . $vals[0] . '"/> ' . $vals[1];
@@ -115,16 +136,28 @@ sub DisplayValueRender {
     }
 
     # set field link form config
-    my $Link = $Param{DynamicFieldConfig}->{Config}->{Link} || '';
+    my $Link        = $Param{DynamicFieldConfig}->{Config}->{Link}        || '';
+    my $LinkPreview = $Param{DynamicFieldConfig}->{Config}->{LinkPreview} || '';
 
     # create return structure
     my $Data = {
-        Value => $Value,
-        Title => $Title,
-        Link  => $Link,
+        Value       => $Value,
+        Title       => $Title,
+        Link        => $Link,
+        LinkPreview => $LinkPreview,
     };
 
     return $Data;
 }
 
 1;
+
+=head1 TERMS AND CONDITIONS
+
+This software is part of the OTRS project (L<https://otrs.org/>).
+
+This software comes with ABSOLUTELY NO WARRANTY. For details, see
+the enclosed file COPYING for license information (GPL). If you
+did not receive this file, see L<https://www.gnu.org/licenses/gpl-3.0.txt>.
+
+=cut

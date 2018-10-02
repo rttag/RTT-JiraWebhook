@@ -3,8 +3,9 @@
 # RTT-JiraWebhook
 #
 # Copyright (C) 2013-2014 Realtime Technology AG, http://rtt.ag/
+# Copyright (C) 2014-2018 Dassault Systemes 3DEXCITE GmbH, http://3dexcite.de/
 #
-# Author: Martin Gross <martin.gross@rtt.ag>
+# Author: Martin Gross <martin.gross@3ds.com>
 # License: GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007
 #
 # THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
@@ -15,6 +16,7 @@
 
 use strict;
 use warnings;
+no warnings qw(uninitialized);
 
 #use ../../ as lib location
 use FindBin qw($Bin);
@@ -47,6 +49,9 @@ $CommonObject{DBObject}     = $Kernel::OM->Get('Kernel::System::DB');
 $CommonObject{TicketObject} = $Kernel::OM->Get('Kernel::System::Ticket');
 $CommonObject{DynamicFieldObject} = $Kernel::OM->Get('Kernel::System::DynamicField');
 $CommonObject{DynamicFieldBackendObject} = $Kernel::OM->Get('Kernel::System::DynamicField::Backend');
+$CommonObject{ArticleObject} = $Kernel::OM->Get('Kernel::System::Ticket::Article')->BackendForChannel(
+	ChannelName => 'Internal',
+);
 
 my $q = new CGI;
 my @fields = $q->param();
@@ -204,7 +209,7 @@ foreach my $TicketID(@TicketIDs) {
 		</div><!-- End #email-body -->';
 
 		# Insert new Article with information, what changed
-		$CommonObject{TicketObject}->ArticleCreate(
+		$CommonObject{ArticleObject}->ArticleCreate(
 			TicketID	 => $TicketID,
 			ArticleType      => 'note-internal',
 			SenderType       => 'system',
@@ -216,6 +221,7 @@ foreach my $TicketID(@TicketIDs) {
 			HistoryType      => 'AddNote',
 			HistoryComment   => 'Update from linked JIRA-case',
 			UserID           => 1,
+			IsVisibleForCustomer => 0,
 		);
 		
 		# Update TicketState to "open"
