@@ -1,4 +1,4 @@
-[![RTT Logo](http://www.rtt.ag/static/system/modules/com.realtimetechnology.corporatewebsite/1.5.7/resources/img/logo_rtt.png) **CHALLENGING REALITY. Every day**](http://rtt.ag/)
+[![3DExcite Logo](https://www.3dexcite.com/wp/wp-content/uploads/2018/00_framework/logo.png) **Marketing in the Age of Experience**](http://3dexcite.com/)
 
 RTT-JiraWebhook
 ===============
@@ -11,9 +11,10 @@ Download the opm-Package and install it via the admin-interface using the packag
 
 **Prerequisites**
 
-- OTRS 5.0.x
+- OTRS 6.0.x
 - An unmaintained version for OTRS 3.2.x can be found at https://github.com/rttag/RTT-JiraWebhook/tree/v1.0.0
 - An unmaintained version for OTRS 3.3.x can be found at https://github.com/rttag/RTT-JiraWebhook/tree/v1.0.1
+- An unmaintained version for OTRS 5.0.x can be found at https://github.com/rttag/RTT-JiraWebhook/tree/v1.1.0
 
 **Configuration OTRS**
 
@@ -53,3 +54,5 @@ THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EIT
 
 
 (c) 2013-2014 Realtime Technology AG - http://rtt.ag/
+(c) 2014-2018 Dassault Systemes 3DExcite GmbH - http://3dexcite.com/
+
