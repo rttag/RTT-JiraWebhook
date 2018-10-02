@@ -4,8 +4,9 @@
 RTT-JiraWebhook
 
 Copyright (C) 2013-2014 Realtime Technology AG, http://rtt.ag/
+Copyright (C) 2014-2018 Dassault Systemes 3DEXCITE GmbH, http://3dexcite.de/
 
-Author: Martin Gross <martin.gross@rtt.ag>
+Author: Martin Gross <martin.gross@3ds.com>
 License: GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007
 
 THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
@@ -16,18 +17,19 @@ PARTICULAR PURPOSE.
 -->
 <otrs_package version="1.0">
     <Name>RTT-JiraWebhook</Name>
-    <Version>1.1.0</Version>
-    <Framework>5.0.x</Framework>
-    <Vendor>Realtime Technology AG</Vendor>
-    <URL>http://rtt.ag/</URL>
+    <Version>1.2.0</Version>
+    <Framework>6.0.x</Framework>
+    <Vendor>Dassault Systemes 3DEXCITE GmbH</Vendor>
+    <URL>http://3dexcite.com/</URL>
     <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
     <Description Lang="en">Integrates Jira-Webhooks into OTRS</Description>
     <Description Lang="de">Integriert Jira-Webhooks in OTRS</Description>
     <ChangeLog Version="1.0.0" Date="2013-12-22 10:39:55 +0100">Initial release for OTRS 3.2.x</ChangeLog>
     <ChangeLog Version="1.0.1" Date="2014-01-23 19:05:00 +0100">Update to support OTRS 3.3.x while dropping support for OTRS 3.2.x</ChangeLog>
     <ChangeLog Version="1.1.0" Date="2015-10-27 12:10:00 +0100">Update to support OTRS 5.0.x while dropping support for OTRS 3.3.x. Module could also work on OTRS 4.x, but this has not been tested</ChangeLog>
+    <ChangeLog Version="1.2.0" Date="2018-10-02 16:20:00 +0100">Update to support OTRS 6.0.x while dropping support for older OTRS-version</ChangeLog>
     <Filelist>
-        <File Permission="644" Location="Kernel/Config/Files/RTT-JiraWebhook.xml"/>
+        <File Permission="644" Location="Kernel/Config/Files/XML/RTT-JiraWebhook.xml"/>
         <File Permission="644" Location="Kernel/Modules/AgentTicketRTTwaitJira.pm"/>
         <File Permission="644" Location="Kernel/System/DynamicField/Driver/IconText.pm"/>
         <File Permission="755" Location="bin/cgi-bin/jira.pl"/>
