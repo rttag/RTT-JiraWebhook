@@ -2,11 +2,12 @@
 # RTT-JiraWebhook
 #
 # Copyright (C) 2013-2014 Realtime Technology AG, http://rtt.ag/
+# Copyright (C) 2014-2018 Dassault Systemes 3DEXCITE GmbH, http://3dexcite.de/
 #
 # Based on Znuny4OTRS-QuickClose
 # Copyright (C) 2013 Znuny GmbH, http://znuny.com/
 #
-# Author: Martin Gross <martin.gross@rtt.ag>
+# Author: Martin Gross <martin.gross@3ds.com>
 # License: GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007
 #
 # THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
